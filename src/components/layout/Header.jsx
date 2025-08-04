@@ -13,16 +13,16 @@ const Header = ({ isLoggedIn, onLogout }) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link onClick={() => navigate("/")}>Home</Nav.Link>
-            <Nav.Link onClick={() => navigate("/form")}>Entry Form</Nav.Link>
-            <Nav.Link onClick={() => navigate("/users")}>Users</Nav.Link>
+            <Nav.Link className="active" onClick={() => navigate("/")}>Home</Nav.Link>
+            {/* <Nav.Link onClick={() => navigate("/form")}>Entry Form</Nav.Link>
+            <Nav.Link onClick={() => navigate("/users")}>Users</Nav.Link> */}
           </Nav>
           {isLoggedIn ? (
-            <Button variant="outline-light" onClick={onLogout}>
+            <Button size="sm" variant="outline-light" onClick={onLogout}>
               Logout
             </Button>
           ) : (
-            <Button variant="outline-light" onClick={() => navigate("/login")}>Login</Button>
+            <Button variant="outline-light" size="sm" onClick={() => navigate("/login")}>Login</Button>
           )}
         </Navbar.Collapse>
       </Container>
