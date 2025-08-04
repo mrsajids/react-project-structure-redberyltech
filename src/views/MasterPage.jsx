@@ -1,23 +1,25 @@
-
-
-import Home from "./Home";
-import Contact from "./Contact";
+import Home from "../components/Home";
+import Contact from "../components/Contact";
 import { useState, useEffect, useCallback } from "react";
 import { getUsers } from "../controllers/userController";
 import { Tab, Tabs } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 
 const MasterPage = () => {
-  const [key, setKey] = useState("home");
+  const [key, setKey] = useState("users");
   const [users, setUsers] = useState([]);
-
-  const fetchUserData = useCallback(async () => {
-    const data = await getUsers();
-    setUsers(data);
-  }, []);
+   const dispatch = useDispatch();
+  const { data, loading, error } = useSelector((state) => state);
 
   useEffect(() => {
-    fetchUserData();
-  }, [fetchUserData]);
+    dispatch({ type: 'FETCH_DATA_REQUEST' });
+  }, [dispatch]);
+  // console.log(data, loading, error);
+  
+    useEffect(() => {
+      if (!data) return;
+    setUsers(data);
+  }, [data]);
 
   return (
     <Tabs
@@ -43,6 +45,13 @@ const MasterPage = () => {
                   <th>City</th>
                 </tr>
               </thead>
+              {(loading||error) &&<tbody>
+                <tr>
+                  <td colSpan="5" className="text-center">
+                    {loading ? "Loading..." : error ? `Error: ${error}` : ""}
+                  </td>
+                </tr>
+                </tbody>}
               <tbody>
                 {users.map((user) => (
                   <tr key={user.id}>
