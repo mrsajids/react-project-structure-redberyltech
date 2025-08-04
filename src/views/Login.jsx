@@ -19,7 +19,7 @@ const Login = ({ onLogin }) => {
   };
 
   return (
-    <Card className="mx-auto mt-5" style={{ maxWidth: 400 }}>
+    <Card className="mx-auto mt-5 p-3" style={{ maxWidth: 400 }}>
       <Card.Body>
         <h3 className="mb-4">Login</h3>
         {error && <Alert variant="danger">{error}</Alert>}
