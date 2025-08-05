@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import MasterPage from "./views/MasterPage";
+import Master from "./views/Master";
 import MainLayout from "./layouts/MainLayout";
 import Login from "./views/Login";
 import { Provider } from "react-redux";
@@ -16,7 +16,7 @@ function AppRoutes({ isLoggedIn, onLogin, onLogout }) {
           {/* Layout route wraps all children */}
           <Route element={<MainLayout isLoggedIn={isLoggedIn} onLogout={onLogout} />}>
             <Route path="/" element={<Home />} />
-            <Route path="/users" element={<MasterPage />} />
+            <Route path="/users" element={<Master />} />
             <Route path="/contact" element={<Contact />} />
           </Route>
 
